@@ -1,7 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Important
-**You must install craco to run the project properly.
+## Important!
+**To run tailwindcss you have to install craco
+### `npm install @craco/craco`
 
 ## Available Scripts
 
