@@ -9,6 +9,8 @@ const initialState = {
   discountAmount: null,
   totalPrice: null,
   couponCode: null,
+  createdHotelID: localStorage.getItem('createdHotelID') || null,
+  updateMode: false,
   selectedRoom: JSON.parse(localStorage.getItem('selectedRoom')) || {
     hotel_id: null,
     hotel_name: null,
@@ -48,7 +50,8 @@ export const hotelSlice = createSlice({
       state.roomDetails = action.payload;
     },
     resetRoomDetails: (state) => {
-      state.roomDetails = null
+      state.roomDetails = null;
+      state.updateMode = false;
     },
     changeSelectedRoom: (state, action) => {
       state.selectedRoom = action.payload;
@@ -56,6 +59,7 @@ export const hotelSlice = createSlice({
     },
     resetSelectedRoom: (state) => {
       state.selectedRoom = { hotel_id: null, start_date: null, end_date: null, adult: null, child: null, room_type: null, room_scenic: null, price: null, coupon_code: null, card_name: null, card_number: null, card_date_month: null, card_date_year: null, card_cvv: null, }
+      state.updateMode = false;
       localStorage.removeItem('selectedRoom');
     },
     addCouponCodes: (state, action) => {
@@ -73,11 +77,18 @@ export const hotelSlice = createSlice({
     setSelectedRoomDetail: (state, action) => {
       state.selectedRoomDetail = action.payload;
       localStorage.setItem('selectedRoomDeteils', JSON.stringify(action.payload));
+    },
+    setCreatedHotelID: (state, action) => {
+      state.createdHotelID = action.payload;
+      localStorage.setItem('createdHotelID', action.payload);
+    },
+    setUpdateMode: (state, action) => {
+      state.updateMode = action.payload;
     }
   },
 });
 
-export const { changeStep, getRooms, getRoomDetails, changeStatus, changeSelectedRoom, addCouponCodes, resetRoomDetails,resetSelectedRoom, setDiscountAmount, setTotalPrice, setCouponCode, setSelectedRoomDetail } = hotelSlice.actions;
+export const { changeStep, getRooms, getRoomDetails, changeStatus, changeSelectedRoom, addCouponCodes, resetRoomDetails,resetSelectedRoom, setDiscountAmount, setTotalPrice, setCouponCode, setSelectedRoomDetail, setCreatedHotelID, setUpdateMode } = hotelSlice.actions;
 
 export default hotelSlice.reducer;
 

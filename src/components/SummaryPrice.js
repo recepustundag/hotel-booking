@@ -11,17 +11,17 @@ const SummaryPrice = ({selectedRoom, roomType, roomScenic, couponCode, totalPric
       <div className="flex flex-col items-center gap-2 px-4 py-6 mt-4 space-y-3 bg-white rounded">
         <div className="flex items-center justify-between w-full">
           <span className="font-semibold">Oda Fiyatı</span>
-          <span>{formatMoney(roomType?.filter((item) => item.id == selectedRoom.room_type)[0].price)} TL</span>
+          <span>{formatMoney(roomType?.filter((item) => item.id == selectedRoom.room_type)[0]?.price)} TL</span>
         </div>
         <div className="flex items-center justify-between w-full">
           <span className="font-semibold">Fiyat Etki Oranı</span>
-          <span>%{roomScenic?.filter((item) => item.id == selectedRoom.room_scenic)[0].price_rate}</span>
+          <span>%{roomScenic?.filter((item) => item.id == selectedRoom.room_scenic)[0]?.price_rate}</span>
         </div>
         <div className="flex items-center justify-between w-full">
           <span className="font-semibold">
             Konaklama <span className="font-normal">({roomDay} gün)</span>
           </span>
-          <span>{formatMoney(roomType?.filter((item) => item.id == selectedRoom.room_type)[0].price * roomDay)} TL</span>
+          <span>{formatMoney(roomType?.filter((item) => item.id == selectedRoom.room_type)[0]?.price * roomDay)} TL</span>
         </div>
         {couponCode && (
           <div className="flex items-center justify-between w-full">

@@ -22,11 +22,11 @@ const SummaryRoom = ({ selectedRoom, roomType, roomScenic }) => {
         </div>
         <div className="flex flex-col items-center justify-center py-2 bg-white rounded">
           <strong>Oda Tipi:</strong>
-          <span>{roomType?.filter((item) => item.id == selectedRoom.room_type)[0].title}</span>
+          <span>{roomType?.filter((item) => item.id == selectedRoom.room_type)[0]?.title}</span>
         </div>
         <div className="flex flex-col items-center justify-center py-2 bg-white rounded">
           <strong>Manzara:</strong>
-          <span>{roomScenic?.filter((item) => item.id == selectedRoom.room_scenic)[0].title}</span>
+          <span>{roomScenic?.filter((item) => item.id == selectedRoom.room_scenic)[0]?.title}</span>
         </div>
       </div>
     </div>

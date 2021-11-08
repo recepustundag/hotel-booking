@@ -4,6 +4,8 @@ export const alertTime = 2000;
 
 export const hotelList = [];
 
+export const baseURL = 'https://5f6d939160cf97001641b049.mockapi.io/tkn/hotel-bookings';
+
 export const hotels = (items) => {
   items.map((hotel) => {
     hotelList.push({
@@ -47,6 +49,22 @@ export const diffDate = (start_date, end_date) => {
   const start = moment(start_date, "DD.MM.YYYY");
   const end = moment(end_date, "DD.MM.YYYY");
   return end.diff(start, 'days') == 0 ? 1 : end.diff(start, 'days');
+}
+
+export const postData = async(url = '', data = {}, method) => {
+  
+  const response = await fetch(url, {
+    method: method,
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify(data)
+  });
+  return response.json();
 }
 
 export const formatMoney = (price) => {

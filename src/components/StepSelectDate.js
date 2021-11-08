@@ -71,13 +71,12 @@ const StepSelectDate = () => {
     dispatch(fetchRooms());
     dispatch(fetchRoomsDetails());
   }, [dispatch]);
-
   return (
     <div className="px-4 py-4 mt-8 border border-gray-300 rounded">
       <Select
         options={hotelList}
         onChange={handleSelectChange}
-        defaultValue={{ value: selectedRoom.hotel_id, label: selectedRoom.hotel_name }}
+        defaultValue={{ value: selectedRoom.hotel_id ?? '', label: selectedRoom.hotel_name ?? '' }}
         className="cursor-pointer"
         placeholder="Rezervasyon yapmak istediğiniz oteli seçiniz."
       />

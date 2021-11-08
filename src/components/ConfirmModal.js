@@ -1,20 +1,26 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeStep, resetRoomDetails, resetSelectedRoom } from "../features/hotelBooking/hotelSlice";
+import { baseURL, postData } from "../utils";
 
-const ConfirmModal = ({setOpenModal}) => {
-  
+const ConfirmModal = ({ setOpenModal }) => {
   const dispatch = useDispatch();
-
+  const { createdHotelID } = useSelector((state) => state.hotelBooking);
   const closeModal = () => {
     setOpenModal(false);
-  }
+  };
 
   const confirmReservation = () => {
-    dispatch(resetRoomDetails());
-    dispatch(resetSelectedRoom());
-    dispatch(changeStep(1));
-  }
+    postData(`${baseURL}/${createdHotelID}`, {}, "DELETE")
+      .then((data) => {
+        dispatch(resetRoomDetails());
+        dispatch(resetSelectedRoom());
+        dispatch(changeStep(1));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full">
@@ -41,8 +47,12 @@ const ConfirmModal = ({setOpenModal}) => {
           <p>Rezervasyon kaydınızı iptal etmek istediğinize emin misiniz?</p>
 
           <div className="flex justify-end gap-2 pt-2">
-            <button onClick={confirmReservation} className="px-4 py-1 text-white transition duration-150 bg-red-700 rounded hover:bg-red-900">Onayla</button>
-            <button onClick={closeModal} className="px-4 py-1 text-gray-900 transition duration-150 bg-gray-200 rounded hover:bg-gray-300">Vazgeç</button>
+            <button onClick={confirmReservation} className="px-4 py-1 text-white transition duration-150 bg-red-700 rounded hover:bg-red-900">
+              Onayla
+            </button>
+            <button onClick={closeModal} className="px-4 py-1 text-gray-900 transition duration-150 bg-gray-200 rounded hover:bg-gray-300">
+              Vazgeç
+            </button>
           </div>
         </div>
       </div>

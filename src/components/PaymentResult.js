@@ -10,7 +10,7 @@ import SummaryPrice from "./SummaryPrice";
 import ConfirmModal from "./ConfirmModal";
 
 /* store */
-import { changeStep, resetRoomDetails, resetSelectedRoom } from "../features/hotelBooking/hotelSlice";
+import { changeStep, resetRoomDetails, resetSelectedRoom, setUpdateMode } from "../features/hotelBooking/hotelSlice";
 
 const PaymentResult = () => {
 
@@ -28,6 +28,7 @@ const PaymentResult = () => {
 
   const updateReservation = () => {
     dispatch(changeStep(1));
+    dispatch(setUpdateMode(true));
   };
 
   const cancelReservation = () => {
